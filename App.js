@@ -19,32 +19,15 @@ import {
   Image,
   TouchableOpacity
 } from 'react-native';
-import {LIGHT_GREY, SLIGHTLY_DARKER_GREY} from './colors';
-
-const SPACE_FROM_EDGE = 20;
+import {} from './colors';
+import Header from './Header';
 
 const App = () => {
 
-
-  //If you're wondering why there's a View, another View and a SafeAreaView its so the gray header extends up to the iphone's notch
   return (
     <View style={{flex:1}}>
       
-      <View style={{
-        backgroundColor:LIGHT_GREY,
-        paddingBottom:10,
-        borderBottomWidth:1,
-        borderBottomColor:SLIGHTLY_DARKER_GREY
-      }}>
-        <SafeAreaView
-          style={{
-            flexDirection:'row',
-            justifyContent:'space-between',
-            alignItems:'center',
-            marginTop:20,
-            marginHorizontal:SPACE_FROM_EDGE
-          }}
-        >
+        <Header>
           <TouchableOpacity style={{
           }}>
             <Image 
@@ -73,8 +56,7 @@ const App = () => {
               resizeMode="contain"
             />
           </TouchableOpacity>
-        </SafeAreaView>
-      </View>
+        </Header>
 
       <SafeAreaView style={{
         flex:1,
