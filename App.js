@@ -56,6 +56,21 @@ class App extends Component {
     })
   }
 
+  onSavePressed = (updatedItem) => {
+    this.setState(oldState=>{
+      return {
+        selectedIndex:null,
+        contacts:oldState.contacts.map(contact => {
+          if(contact.id===updatedItem.id){
+            return updatedItem
+          }else{
+            return contact
+          }
+        })
+      }
+    })
+  }
+
   render () {
     return (
       <View style={{flex:1}}>
@@ -64,6 +79,7 @@ class App extends Component {
           <ContactDetails 
             selectedContact={this.state.contacts[this.state.selectedIndex]}
             onCancelPressed={this.onCancelPressed}
+            onSavePressed={this.onSavePressed}
           />
         ):(
           <ContactsList
