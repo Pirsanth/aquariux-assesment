@@ -10,17 +10,17 @@ import React from 'react';
 import type {Node} from 'react';
 import {
   SafeAreaView,
-  ScrollView,
-  StatusBar,
+  FlatList,
   StyleSheet,
   Text,
-  useColorScheme,
   View,
   Image,
   TouchableOpacity
 } from 'react-native';
-import {} from './colors';
+import {SLIGHTLY_DARKER_GREY} from './colors';
 import Header from './Header';
+import data from './data.json';
+import Avatar from './Avatar';
 
 const App = () => {
 
@@ -61,7 +61,28 @@ const App = () => {
       <SafeAreaView style={{
         flex:1,
       }}>
-          
+          <FlatList
+            data={data}
+            renderItem={({ item, index })=>{
+              //filter is incase any of the fields are null, its not really needed because the requirements make firstName and lastName required but i thought i'd add it anyways incase the original json has missing data
+              const displayName = ([item.firstName,item.lastName]).filter(x => !!x).join(" ");
+              return (
+                <TouchableOpacity style={{
+                  flexDirection:'row',
+                  alignItems:'center',
+                  padding: 5,
+                  marginLeft:10,
+                  borderColor:SLIGHTLY_DARKER_GREY,
+                  borderBottomWidth:1
+                }}>
+                  <Avatar size={50}/>
+
+                  <Text style={{marginLeft:10}}>{displayName}</Text>
+                </TouchableOpacity>
+              )
+
+            }}
+          />
       </SafeAreaView>
     </View>
   );
